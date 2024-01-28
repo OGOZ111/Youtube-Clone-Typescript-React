@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Bell, Menu, Upload, User } from "lucide-react";
 import logo from "../assets/logo.png";
 import { Button } from "../components/Button";
 
@@ -14,7 +14,17 @@ export function PageHeader() {
         </a>
       </div>
       <div></div>
-      <div></div>
+      <div className="flex flex-shrink-0 md:gap-2">
+        <Button size="icon" variant="ghost">
+          <Upload />
+        </Button>
+        <Button size="icon" variant="ghost">
+          <Bell />
+        </Button>
+        <Button size="icon" variant="ghost">
+          <User />
+        </Button>
+      </div>
     </div>
   );
 }
