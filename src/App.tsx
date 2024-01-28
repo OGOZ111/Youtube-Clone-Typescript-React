@@ -1,10 +1,12 @@
 import "./App.css";
+import { PageHeader } from "./layouts/PageHeader";
 
 function App() {
   return (
-    <>
-      <h1>Youtube</h1>
-    </>
+    <div className="max-h-sreen flex flex-col">
+      <PageHeader />
+      <div>1</div>
+    </div>
   );
 }
 
