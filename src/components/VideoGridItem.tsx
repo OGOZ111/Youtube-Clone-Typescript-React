@@ -36,6 +36,11 @@ export function VideoGridItem({
           {formatDuration(duration)}
         </div>
       </a>
+      <div className="flex gap-2 ">
+        <a href={`/@${channel.id}`} className="flex-shrink-0 ">
+          <img className="w-12 h-12 rounded-full" src={channel.profileUrl} />
+        </a>
+      </div>
     </div>
   );
 }
