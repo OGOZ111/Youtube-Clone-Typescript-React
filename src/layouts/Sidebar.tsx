@@ -32,35 +32,56 @@ export function Sidebar() {
       </aside>
       <aside className="w-56 lg:sticky absolute top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col gap-2 px-2 flex ">
         <LargeSidebarSection visibleItemCount={3}>
-          <LargeSidebarItem isActive Icon={Home} title="Home" url="/" />
+          <LargeSidebarItem isActive IconOrImgUrl={Home} title="Home" url="/" />
           <LargeSidebarItem
-            Icon={Clapperboard}
+            IconOrImgUrl={Repeat}
+            title="Shorts"
+            url="/shorts"
+          />
+          <LargeSidebarItem
+            IconOrImgUrl={Clapperboard}
             title="Subscriptions"
             url="/subscriptions"
           />
         </LargeSidebarSection>
         <hr />
         <LargeSidebarSection visibleItemCount={5}>
-          <LargeSidebarItem Icon={Library} title="Library" url="/library" />
-          <LargeSidebarItem Icon={History} title="History" url="/history" />
           <LargeSidebarItem
-            Icon={PlaySquare}
+            IconOrImgUrl={Library}
+            title="Library"
+            url="/library"
+          />
+          <LargeSidebarItem
+            IconOrImgUrl={History}
+            title="History"
+            url="/history"
+          />
+          <LargeSidebarItem
+            IconOrImgUrl={PlaySquare}
             title="Your Videos"
             url="/your-videos"
           />
           <LargeSidebarItem
-            Icon={Clock}
+            IconOrImgUrl={Clock}
             title="Watch Later"
             url="/playlist?list=WL"
           />
           {playlists.map((playlist) => (
             <LargeSidebarItem
               key={playlist.id}
-              Icon={ListVideo}
+              IconOrImgUrl={ListVideo}
               title={playlist.name}
               url={`/playlist?list=${playlist.id}`}
             />
           ))}
+        </LargeSidebarSection>
+        <hr />
+        <LargeSidebarSection title="Subscriptions">
+          <LargeSidebarItem
+            IconOrImgUrl={Repeat}
+            title="All"
+            url="/subscriptions"
+          />
         </LargeSidebarSection>
       </aside>
     </>
@@ -126,14 +147,14 @@ function LargeSidebarSection({
 }
 
 type LargesidebarItemProps = {
-  Icon: ElementType;
+  IconOrImgUrl: ElementType | string;
   title: string;
   url: string;
   isActive?: boolean;
 };
 
 function LargeSidebarItem({
-  Icon,
+  IconOrImgUrl,
   title,
   url,
   isActive = false,
@@ -148,7 +169,12 @@ function LargeSidebarItem({
         }`
       )}
     >
-      <Icon className="h-6 w-6" />
+      {typeof IconOrImgUrl === "string" ? (
+        <img src={IconOrImgUrl} className="h-6 w-6 rounded-full" />
+      ) : (
+        <IconOrImgUrl className="h-6 w-6" />
+      )}
+
       <div className="whitespace-nowrap overflow-hidden overflow-ellipsis">
         {title}
       </div>
